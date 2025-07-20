@@ -1,13 +1,15 @@
 import { Link } from "expo-router";
 import { Text, View } from "react-native";
 
-export default function FlexboxMenu () {
+export default function FlexboxMenu() {
   return (
-    <View 
+    <View
       style={{
         flex: 1,
-        justifyContent: "center",
+        justifyContent: "space-around",
         alignItems: "center",
+        flexDirection: "row",
+        flexWrap: "wrap",
       }}
     >
       <Link
@@ -142,8 +144,7 @@ export default function FlexboxMenu () {
         }}
       >
         <Text style={{ color: "#fff", fontWeight: "bold" }}>ex012</Text>
-        </Link>
-      </View>
-  )
-  
-};
+      </Link>
+    </View>
+  );
+}

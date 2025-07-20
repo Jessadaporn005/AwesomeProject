@@ -1,33 +1,30 @@
+import FlexboxMenu from "@/components/FlexboxMenu";
 import { Link } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", }} >
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Edit app/index.tsx to edit this screen.</Text>
-          <Text>Flexbox Menu</Text>
-          
+      <Text>Flexbox Menu</Text>
+
       <View style={styles.container}>
         <Link href="/test-components" style={styles.link}>
           <Text style={styles.linkText}>Test Components</Text>
         </Link>
-         <Link href="/test-greeting" style={styles.link}>
-        <Text style={styles.linkText}>Test Greeting</Text>
-      </Link>
-        
-         <Link href="/../components/FlexboxMenu" style={styles.link}>
-        <Text style={styles.linkText}>Flexboxmenu</Text>
-      </Link>
-   
-    <Link href="/travel" style={styles.link}>
-        <Text style={styles.linkText}>Travel</Text>
-      </Link>
-    
-    <Link href="/resort" style={styles.link}>
-        <Text style={styles.linkText}>resort</Text>
-      </Link>
-    
+        <Link href="/test-greeting" style={styles.link}>
+          <Text style={styles.linkText}>Test Greeting</Text>
+        </Link>
 
+        <FlexboxMenu />
+
+        <Link href="/travel" style={styles.link}>
+          <Text style={styles.linkText}>Travel</Text>
+        </Link>
+
+        <Link href="/resort" style={styles.link}>
+          <Text style={styles.linkText}>resort</Text>
+        </Link>
       </View>
     </View>
   );
