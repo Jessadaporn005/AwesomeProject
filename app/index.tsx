@@ -15,7 +15,7 @@ export default function Index() {
         <Text style={styles.linkText}>Test Greeting</Text>
       </Link>
         
-         <Link href="/../Components/FlexboxMenu" style={styles.link}>
+         <Link href="/../components/FlexboxMenu" style={styles.link}>
         <Text style={styles.linkText}>Flexboxmenu</Text>
       </Link>
    

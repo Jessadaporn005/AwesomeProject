@@ -5,7 +5,7 @@ export default function Section2() {
   return (
     <View
       style={{
-        marginTop:-25,
+        marginTop:-20,
         padding: 5,
         borderWidth: 0.5,
         borderColor: "black",
