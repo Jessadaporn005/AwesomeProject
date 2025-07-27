@@ -16,7 +16,7 @@ export default function Index() {
           <Text style={styles.linkText}>Test Greeting</Text>
         </Link>
 
-        <FlexboxMenu />
+        <FlexboxMenu /> 
 
         <Link href="/travel" style={styles.link}>
           <Text style={styles.linkText}>Travel</Text>
@@ -24,7 +24,12 @@ export default function Index() {
 
         <Link href="/resort" style={styles.link}>
           <Text style={styles.linkText}>resort</Text>
+          
         </Link>
+        <Link href="/health" style={styles.link}>
+  <Text style={styles.linkText}>Health</Text>
+</Link>
+
       </View>
     </View>
   );
