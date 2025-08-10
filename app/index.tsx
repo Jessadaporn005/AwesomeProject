@@ -16,7 +16,7 @@ export default function Index() {
           <Text style={styles.linkText}>Test Greeting</Text>
         </Link>
 
-        <FlexboxMenu /> 
+        <FlexboxMenu />
 
         <Link href="/travel" style={styles.link}>
           <Text style={styles.linkText}>Travel</Text>
@@ -24,16 +24,28 @@ export default function Index() {
 
         <Link href="/resort" style={styles.link}>
           <Text style={styles.linkText}>resort</Text>
-          
         </Link>
         <Link href="/health" style={styles.link}>
-  <Text style={styles.linkText}>Health</Text>
-</Link>
+          <Text style={styles.linkText}>Health</Text>
+        </Link>
         <Link href="/home" style={styles.link}>
-  <Text style={styles.linkText}>Home</Text>
-</Link>
-
-
+          <Text style={styles.linkText}>Home</Text>
+        </Link>
+        <Link href="/chart" style={styles.link}>
+          <Text style={styles.linkText}>Chart</Text>
+        </Link>
+        <Link href="/your-health" style={styles.link}>
+          <Text style={styles.linkText}>Your Health</Text>
+        </Link>
+        <Link href="/todolist" style={styles.link}>
+          <Text style={styles.linkText}>Todolist</Text>
+        </Link>
+        {/* <Link href="/Tab/profile" style={styles.link}>
+  <Text style={styles.linkText}>Profile</Text>
+  </Link>
+  <Link href="/Tab/setting" style={styles.link}>
+  <Text style={styles.linkText}>Setting</Text>
+  </Link> */}
       </View>
     </View>
   );
