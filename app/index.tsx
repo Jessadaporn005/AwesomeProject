@@ -20,7 +20,7 @@ export default function Index() {
 
         <Link href="/travel" style={styles.link}>
           <Text style={styles.linkText}>Travel</Text>
-        </Link>
+          </Link>
 
         <Link href="/resort" style={styles.link}>
           <Text style={styles.linkText}>resort</Text>
@@ -40,6 +40,7 @@ export default function Index() {
         <Link href="/todolist" style={styles.link}>
           <Text style={styles.linkText}>Todolist</Text>
         </Link>
+        
         {/* <Link href="/Tab/profile" style={styles.link}>
   <Text style={styles.linkText}>Profile</Text>
   </Link>
@@ -51,12 +52,33 @@ export default function Index() {
   );
 }
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center" },
-  link: {
-    margin: 10,
-    padding: 10,
-    backgroundColor: "#2196F3",
-    borderRadius: 5,
+  container: { 
+    flex: 1, 
+    justifyContent: "center", 
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#0f172a", // เพิ่มพื้นหลังเข้มหน่อย จะทำให้ปุ่มเด่นขึ้น
   },
-  linkText: { color: "#fff", fontSize: 16, textAlign: "center" },
+  link: {
+    marginVertical: 25,
+    marginHorizontal: 12,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    backgroundColor: "#2563eb", // น้ำเงินสด
+    borderRadius: 12,           // มนขึ้น ดูโมเดิร์นกว่า
+    shadowColor: "#000",        // เงาเบา ๆ
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 4,
+  },
+  linkText: { 
+    color: "#fff", 
+    fontSize: 16, 
+    fontWeight: "600", 
+    letterSpacing: 0.3,
+    textAlign: "center" 
+  },
 });
+
+  
