@@ -41,6 +41,11 @@ export default function Index() {
           <Text style={styles.linkText}>Todolist</Text>
         </Link>
         
+        <Link href="/location" style={styles.link}>
+          <Text style={styles.linkText}>Location</Text>
+        </Link>
+        
+        
         {/* <Link href="/Tab/profile" style={styles.link}>
   <Text style={styles.linkText}>Profile</Text>
   </Link>
