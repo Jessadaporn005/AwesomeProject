@@ -16,7 +16,7 @@ export default function Index() {
           <Text style={styles.linkText}>Test Greeting</Text>
         </Link>
 
-        <FlexboxMenu />
+       <FlexboxMenu />
 
         <Link href="/travel" style={styles.link}>
           <Text style={styles.linkText}>Travel</Text>
@@ -44,6 +44,11 @@ export default function Index() {
         <Link href="/location" style={styles.link}>
           <Text style={styles.linkText}>Location</Text>
         </Link>
+        <Link href="/book" style={styles.link}>
+          <Text style={styles.linkText}>book</Text>
+        </Link>
+
+        
         
         
         {/* <Link href="/Tab/profile" style={styles.link}>
@@ -56,34 +61,52 @@ export default function Index() {
     </View>
   );
 }
+// โทนสี + ค่าคงที่เล็ก ๆ ให้โค้ดอ่านง่าย/แก้รวมที่เดียว
+const palette = {
+  bg: "#0f172a",
+  primary: "#2563eb",
+  textOnPrimary: "#ffffff", // คอนทราสต์ชัดบนปุ่มน้ำเงิน
+  shadow: "#000000",
+};
+const radius = 16;
+const spacing = { v: 16, h: 18 };
+
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    justifyContent: "center", 
+  container: {
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#0f172a", // เพิ่มพื้นหลังเข้มหน่อย จะทำให้ปุ่มเด่นขึ้น
+    backgroundColor: palette.bg,
   },
   link: {
-    marginVertical: 25,
-    marginHorizontal: 12,
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-    backgroundColor: "#2563eb", // น้ำเงินสด
-    borderRadius: 12,           // มนขึ้น ดูโมเดิร์นกว่า
-    shadowColor: "#000",        // เงาเบา ๆ
-    shadowOpacity: 0.15,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 4,
+    marginVertical: 14,
+    marginHorizontal: 10,
+    paddingVertical: spacing.v,
+    paddingHorizontal: spacing.h,
+    backgroundColor: palette.primary,
+    borderRadius: radius,
+    alignItems: "center",
+
+    // เงา (iOS)
+    shadowColor: palette.shadow,
+    shadowOpacity: 0.18,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 6 },
+
+    // เงา (Android)
+    elevation: 6,
   },
-  linkText: { 
-    color: "#fff", 
-    fontSize: 16, 
-    fontWeight: "600", 
+  // ใช้คู่กับ Pressable เพื่อเอฟเฟกต์ขณะกด
+  linkPressed: {
+    opacity: 0.9,
+    transform: [{ scale: 0.98 }],
+  },
+  linkText: {
+    color: palette.textOnPrimary,
+    fontSize: 16,
+    fontWeight: "700",
     letterSpacing: 0.3,
-    textAlign: "center" 
+    textAlign: "center",
   },
 });
-
-  
