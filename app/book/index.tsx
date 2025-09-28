@@ -4,14 +4,14 @@ import { Book } from "@/utils/types";
 import { useFocusEffect, useNavigation, useRouter } from "expo-router";
 import React, { useCallback, useLayoutEffect, useState } from "react";
 import {
-    Alert,
-    Button,
-    FlatList,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Alert,
+  Button,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 export default function BookListScreen() {
@@ -94,7 +94,7 @@ export default function BookListScreen() {
       />
       {books.length === 0 && (
         <View style={styles.empty}>
-          <Text>ยังไม่มีหนังสือในรายการ — กด "เพิ่มหนังสือใหม่"</Text>
+          <Text>ยังไม่มีหนังสือในรายการ — กด {"\""}เพิ่มหนังสือใหม่{"\""}</Text>
         </View>
       )}
     </View>
