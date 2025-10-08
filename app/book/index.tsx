@@ -1,28 +1,23 @@
 // app/index.tsx
-import { deleteBook, getBooks } from "@/utils/book-storage";
+import { useBooks } from "@/hooks/useBooks";
 import { Book } from "@/utils/types";
 import { useFocusEffect, useNavigation, useRouter } from "expo-router";
-import React, { useCallback, useLayoutEffect, useState } from "react";
+import React, { useCallback, useLayoutEffect } from "react";
 import {
-  Alert,
-  Button,
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    Alert,
+    Button,
+    FlatList,
+    Image,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 
 export default function BookListScreen() {
-  const [books, setBooks] = useState<Book[]>([]);
+  const { books, loading, refresh, refreshing, remove, reload } = useBooks();
   const router = useRouter();
   const navigation = useNavigation();
-
-  const load = async () => {
-    const data = await getBooks();
-    setBooks(data);
-  };
 
   // set title
   useLayoutEffect(() => {
@@ -33,8 +28,9 @@ export default function BookListScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      load();
-    }, [])
+      // when screen focused ensure data newest
+      reload();
+    }, [reload])
   );
 
   const handleDelete = (id: string) => {
@@ -44,11 +40,23 @@ export default function BookListScreen() {
         text: "ลบ",
         style: "destructive",
         onPress: async () => {
-          await deleteBook(id);
-          load();
+          await remove(id);
         },
       },
     ]);
+  };
+
+  const timeAgo = (ts?: number) => {
+    if (!ts) return null;
+    const diff = Date.now() - ts;
+    const sec = Math.floor(diff / 1000);
+    if (sec < 60) return `${sec}s ago`;
+    const min = Math.floor(sec / 60);
+    if (min < 60) return `${min}m ago`;
+    const hr = Math.floor(min / 60);
+    if (hr < 24) return `${hr}h ago`;
+    const day = Math.floor(hr / 24);
+    return `${day}d ago`;
   };
 
   const renderItem = ({ item }: { item: Book }) => (
@@ -59,7 +67,9 @@ export default function BookListScreen() {
       <Image source={{ uri: item.image }} style={styles.thumb} />
       <View style={styles.info}>
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.price}>{item.price} ฿</Text>
+        <Text style={styles.price}>{item.price} ฿ {item.createdAt && (
+          <Text style={styles.meta}>• {timeAgo(item.createdAt)}</Text>
+        )}</Text>
         <View style={styles.actions}>
           <Button
             title="Edit"
@@ -90,11 +100,18 @@ export default function BookListScreen() {
         data={books}
         keyExtractor={(i) => i.id}
         renderItem={renderItem}
-        contentContainerStyle={{ paddingTop: 12 }}
+        refreshing={refreshing}
+        onRefresh={refresh}
+        contentContainerStyle={{ paddingTop: 12, flexGrow: books.length === 0 ? 1 : 0 }}
+        ListEmptyComponent={!loading ? (
+          <View style={styles.empty}>
+            <Text>ยังไม่มีหนังสือในรายการ — กด {"\""}เพิ่มหนังสือใหม่{"\""}</Text>
+          </View>
+        ) : null}
       />
-      {books.length === 0 && (
-        <View style={styles.empty}>
-          <Text>ยังไม่มีหนังสือในรายการ — กด {"\""}เพิ่มหนังสือใหม่{"\""}</Text>
+      {loading && (
+        <View style={styles.loadingOverlay}>
+          <Text style={styles.loadingText}>กำลังโหลด...</Text>
         </View>
       )}
     </View>
@@ -115,6 +132,7 @@ const styles = StyleSheet.create({
   info: { flex: 1, padding: 8, justifyContent: "space-between" },
   title: { fontSize: 16, fontWeight: "600" },
   price: { color: "#1a8917", marginTop: 6 },
+  meta: { color: '#666', fontSize: 12 },
   actions: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -122,4 +140,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   empty: { marginTop: 20, alignItems: "center" },
+  loadingOverlay: { position: 'absolute', top: 0, left: 0, right: 0, padding: 8, alignItems: 'center' },
+  loadingText: { fontSize: 12, color: '#555' }
 });

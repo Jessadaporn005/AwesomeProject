@@ -7,7 +7,9 @@ const STORAGE_KEY = "BOOKS_V1"; // ถ้าปรับ schema ให้เป�
 export const getBooks = async (): Promise<Book[]> => {
     try {
         const raw = await AsyncStorage.getItem(STORAGE_KEY);
-        return raw ? JSON.parse(raw) as Book[] : [];
+        const parsed = raw ? JSON.parse(raw) as Book[] : [];
+        // sort newest first if createdAt exists
+        return parsed.sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0));
     } catch (e) {
         console.error("getBooks error", e);
         return [];
@@ -43,3 +45,21 @@ export const deleteBook = async (id: string): Promise<void> => {
         console.error("deleteBook error", e);
     }
 };
+
+export const clearBooks = async (): Promise<void> => {
+    try {
+        await AsyncStorage.removeItem(STORAGE_KEY);
+    } catch (e) {
+        console.error("clearBooks error", e);
+    }
+};
+
+export const upsertBooks = async (list: Book[]): Promise<void> => {
+    try {
+        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    } catch (e) {
+        console.error("upsertBooks error", e);
+    }
+};
+
+export const isBook = (obj: any): obj is Book => !!obj && typeof obj.id === 'string' && typeof obj.title === 'string';
